@@ -35,8 +35,8 @@ class AnimeQuoteAdapter(var quotes: ArrayList<AnimeQuote>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val quoteItem = quotes[position]
-        holder.mainText.text = quoteItem.animeName
-        holder.secondaryText.text = quoteItem.animeCharacter
+        holder.mainText.text = quoteItem.anime
+        holder.secondaryText.text = quoteItem.character
         holder.quoteText.text = quoteItem.quote
     }
 

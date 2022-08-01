@@ -33,16 +33,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/animeName" />
 
-    <TextView
-        android:id="@+id/animeQuote"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Quote"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="italic"
+        android:layout_marginTop="25dp"
+        android:minHeight="200dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/characterName" />
+        app:layout_constraintTop_toBottomOf="@id/characterName">
+
+        <TextView
+            android:id="@+id/animeQuote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Quote"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="italic" />
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
