@@ -10,7 +10,7 @@ interface AnimeQuoteRetrofit {
     fun getQuoteByCharacter(@Path("character?name") characterName:String): Call<ArrayList<AnimeQuote>>
     @GET("quotes/{anime?title}")
     fun getQuoteByAnimeTitle(@Path("anime?title") animeTitle:String): Call<ArrayList<AnimeQuote>>
-    @GET("/random")
+    @GET("random")
     fun getRandomQuote():Call<AnimeQuote>
 }
 //todo: try to fetch quote by anime title and character name
