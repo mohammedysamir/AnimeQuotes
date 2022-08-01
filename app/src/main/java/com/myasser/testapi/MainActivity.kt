@@ -2,11 +2,24 @@ package com.myasser.testapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //todo: define retrofit builder, fetch quote and send them to other activities
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.searchButton ->{
+                //todo: implement search function either by anime name or character name or both
+            }
+            R.id.searchRandomButton ->{
+                //todo: implement fetch random quote function
+            }
+        }
     }
 }
 /*
