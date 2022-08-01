@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">testAPI</string>
+    <string name="get_random_quote">Get Random Quote</string>
+    <string name="search">Search</string>
+    <string name="search_by_character_name">Search by Character name</string>
+    <string name="search_by_anime_name">Search by Anime name</string>
+    <string name="welcome_text">Welcome to Anime Quotes</string>
 </resources>

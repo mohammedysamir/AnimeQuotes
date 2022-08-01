@@ -11,5 +11,7 @@ class MainActivity : AppCompatActivity() {
 }
 /*
 * 1. Create model class that will be populated with response
-*
+* 2. User has 3 options to get a quote -> by character name, by anime name, randomly
+* 3. Quotes will be displayed in a recycler view if its by character or anime name
+* 4. Create button for Random quote and another for search that will utilize anime/character name.
 * */
