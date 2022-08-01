@@ -13,7 +13,7 @@ class QuoteActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_quote)
         findViewById<TextView>(R.id.animeName).text = intent.getStringExtra("Anime Name")
-        findViewById<TextView>(R.id.characterName).text = intent.getStringExtra("Character Name")
+        findViewById<TextView>(R.id.characterName).text = "— ${intent.getStringExtra("Character Name")}"
         findViewById<TextView>(R.id.animeQuote).text = "❝ ${intent.getStringExtra("Quote")} ❞"
     }
 }
