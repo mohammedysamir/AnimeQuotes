@@ -6,10 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface AnimeQuoteRetrofit {
-    @GET("quotes/{character?name}")
-    fun getQuoteByCharacter(@Path("character?name") characterName:String): Call<ArrayList<AnimeQuote>>
-    @GET("quotes/{anime?title}")
-    fun getQuoteByAnimeTitle(@Path("anime?title") animeTitle:String): Call<ArrayList<AnimeQuote>>
+    @GET("quotes/{character}")
+    fun getQuoteByCharacter(@Path("character") characterName:String): Call<ArrayList<AnimeQuote>>
+    @GET("quotes/{anime}")
+    fun getQuoteByAnimeTitle(@Path("anime") animeTitle:String): Call<ArrayList<AnimeQuote>>
     @GET("random")
     fun getRandomQuote():Call<AnimeQuote>
 }

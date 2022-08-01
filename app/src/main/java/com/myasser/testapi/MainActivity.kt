@@ -111,8 +111,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         response: Response<AnimeQuote>?
                     ) {
                         val intent = Intent(v.context, QuoteActivity::class.java).apply {
-                            putExtra("Anime Name", response?.body()?.animeName)
-                            putExtra("Character Name", response?.body()?.animeCharacter)
+                            putExtra("Anime Name", response?.body()?.anime)
+                            putExtra("Character Name", response?.body()?.character)
                             putExtra("Quote", response?.body()?.quote)
                         }
                         startActivity(intent)
@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (isAnimeTitle) {
             val call: Call<ArrayList<AnimeQuote>> =
                 animeInterface.getQuoteByAnimeTitle(animeTitle = name)
-            return call.enqueue(object : Callback<ArrayList<AnimeQuote>> {
+            call.enqueue(object : Callback<ArrayList<AnimeQuote>> {
                 override fun onResponse(
                     call: Call<ArrayList<AnimeQuote>>?,
                     response: Response<ArrayList<AnimeQuote>>?
