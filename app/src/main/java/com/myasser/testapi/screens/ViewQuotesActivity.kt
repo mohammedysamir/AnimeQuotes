@@ -6,17 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.myasser.testapi.AnimeQuoteAdapter
+import com.myasser.testapi.MainActivity
 import com.myasser.testapi.R
 import com.myasser.testapi.models.AnimeQuote
 
-//receive list of anime quotes and assign it to recycler view
-/**
- * Show list of quotes with character/anime name chosen by user
- * @param quotesList: represent quotes to be fetched from API
- * @param name: will be displayed as character/anime name at the top of the activity
- */
-class ViewQuotesActivity(private val quotesList: ArrayList<AnimeQuote>, private val name: String) :
-    AppCompatActivity() {
+class ViewQuotesActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +18,8 @@ class ViewQuotesActivity(private val quotesList: ArrayList<AnimeQuote>, private 
         recyclerView = findViewById(R.id.quotesRecyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = AnimeQuoteAdapter(quotes = quotesList)
-        findViewById<TextView>(R.id.nameText).text = name
+        val quotes = MainActivity.incomingResponse
+        recyclerView.adapter = AnimeQuoteAdapter(quotes = quotes)
+        findViewById<TextView>(R.id.nameText).text = intent.getStringExtra("Anime Name")
     }
 }

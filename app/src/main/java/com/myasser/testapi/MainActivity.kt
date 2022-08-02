@@ -2,6 +2,7 @@ package com.myasser.testapi
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -20,6 +21,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var retrofitBuilder: Retrofit
     private lateinit var animeInterface: AnimeQuoteRetrofit
+
+    companion object {
+        lateinit var incomingResponse: ArrayList<AnimeQuote>
+    }
+
+    init {
+        incomingResponse = ArrayList()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,66 +51,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 if (animeTextView.text.isEmpty()) {
                     val characterName = characterTextView.text.toString().trim()
                     fetchQuoteByName(characterName, false)
-//                    //search by character
-//                    val call: Call<ArrayList<AnimeQuote>> =
-//                        animeInterface.getQuoteByCharacter(characterName = characterName)
-//                    call.enqueue(object : Callback<ArrayList<AnimeQuote>> {
-//                        override fun onResponse(
-//                            call: Call<ArrayList<AnimeQuote>>?,
-//                            response: Response<ArrayList<AnimeQuote>>?
-//                        ) {
-//                            startActivity(
-//                                Intent(
-//                                    v.context,
-//                                    ViewQuotesActivity(
-//                                        response?.body()!!,
-//                                        characterName
-//                                    )::class.java
-//                                )
-//                            )
-//                        }
-//
-//                        override fun onFailure(call: Call<ArrayList<AnimeQuote>>?, t: Throwable?) {
-//                            Toast.makeText(
-//                                v.context,
-//                                "Couldn't find quotes for selected character",
-//                                Toast.LENGTH_LONG
-//                            ).show()
-//                        }
-//
-//                    })
                 } else if (animeTextView.text.isNotEmpty()) {
                     //search by anime name
                     val animeTitle = animeTextView.text.toString().trim()
                     fetchQuoteByName(animeTitle, true)
-                    //search by character
-//                    val call: Call<ArrayList<AnimeQuote>> =
-//                        animeInterface.getQuoteByAnimeTitle(animeTitle = animeTitle)
-//                    call.enqueue(object : Callback<ArrayList<AnimeQuote>> {
-//                        override fun onResponse(
-//                            call: Call<ArrayList<AnimeQuote>>?,
-//                            response: Response<ArrayList<AnimeQuote>>?
-//                        ) {
-//                            startActivity(
-//                                Intent(
-//                                    v.context,
-//                                    ViewQuotesActivity(
-//                                        response?.body()!!,
-//                                        animeTitle
-//                                    )::class.java
-//                                )
-//                            )
-//                        }
-//
-//                        override fun onFailure(call: Call<ArrayList<AnimeQuote>>?, t: Throwable?) {
-//                            Toast.makeText(
-//                                v.context,
-//                                "Couldn't find quotes for selected anime title",
-//                                Toast.LENGTH_LONG
-//                            ).show()
-//                        }
-//
-//                    })
                 }
             }
             R.id.searchRandomButton -> {
@@ -129,6 +83,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun fetchQuoteByName(name: String, isAnimeTitle: Boolean) {
+        val viewQuoteIntent = Intent(this@MainActivity, ViewQuotesActivity::class.java).apply {
+            putExtra("Anime Name", name)
+        }
         if (isAnimeTitle) {
             val call: Call<ArrayList<AnimeQuote>> =
                 animeInterface.getQuoteByAnimeTitle(animeTitle = name)
@@ -137,18 +94,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     call: Call<ArrayList<AnimeQuote>>?,
                     response: Response<ArrayList<AnimeQuote>>?
                 ) {
-                    startActivity(
-                        Intent(
-                            this@MainActivity,
-                            ViewQuotesActivity(
-                                response?.body()!!,
-                                name
-                            )::class.java
-                        )
-                    )
+                    if (response?.isSuccessful!!) {
+                        incomingResponse = response.body()!!
+                        startActivity(viewQuoteIntent)
+                    }
                 }
 
                 override fun onFailure(call: Call<ArrayList<AnimeQuote>>?, t: Throwable?) {
+                    Log.i("Error", t.toString())
                     Toast.makeText(
                         this@MainActivity,
                         "Couldn't find quotes for selected anime title",
@@ -164,18 +117,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     call: Call<ArrayList<AnimeQuote>>?,
                     response: Response<ArrayList<AnimeQuote>>?
                 ) {
-                    startActivity(
-                        Intent(
-                            this@MainActivity,
-                            ViewQuotesActivity(
-                                response?.body()!!,
-                                name
-                            )::class.java
-                        )
-                    )
+                    if (response?.isSuccessful!!) {
+                        incomingResponse = response.body()!!
+                        startActivity(viewQuoteIntent)
+
+                    }
                 }
 
                 override fun onFailure(call: Call<ArrayList<AnimeQuote>>?, t: Throwable?) {
+                    Log.i("Error", t.toString())
                     Toast.makeText(
                         this@MainActivity,
                         "Couldn't find quotes for selected character",
@@ -184,6 +134,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             })
         }
+
     }
 }
 /*
