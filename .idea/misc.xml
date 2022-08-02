@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/testAPI/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.133" />
         <entry key="..\:/testAPI/app/src/main/res/drawable/radius_button.xml" value="0.133" />
         <entry key="..\:/testAPI/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/testAPI/app/src/main/res/layout/activity_quote.xml" value="0.17074275362318841" />
