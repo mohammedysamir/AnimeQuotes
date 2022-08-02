@@ -1,3 +1,3 @@
 package com.myasser.testapi.models
 
-class AnimeQuote(animeName:String,animeCharacter:String,quote: String)
+data class AnimeQuote(var anime:String,var character:String,var quote: String)
