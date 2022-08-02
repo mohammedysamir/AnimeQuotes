@@ -5,8 +5,8 @@
       <map>
         <entry key="..\:/testAPI/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.133" />
         <entry key="..\:/testAPI/app/src/main/res/drawable/radius_button.xml" value="0.133" />
-        <entry key="..\:/testAPI/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/testAPI/app/src/main/res/layout/activity_quote.xml" value="0.17074275362318841" />
+        <entry key="..\:/testAPI/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/testAPI/app/src/main/res/layout/activity_quote.xml" value="0.22" />
         <entry key="..\:/testAPI/app/src/main/res/layout/activity_view_quotes.xml" value="0.19322916666666667" />
         <entry key="..\:/testAPI/app/src/main/res/layout/quote_holder.xml" value="0.25" />
       </map>
