@@ -138,6 +138,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     response: Response<ArrayList<AnimeQuote>>?
                 ) {
                     if (response?.isSuccessful!!) {
+                        incomingResponse = response.body()!!
                         if (incomingResponse.size > 0)
                             startActivity(viewQuoteIntent)
                         else
