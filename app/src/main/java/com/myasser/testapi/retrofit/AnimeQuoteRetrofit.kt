@@ -15,4 +15,3 @@ interface AnimeQuoteRetrofit {
     @GET("random")
     fun getRandomQuote(): Call<AnimeQuote>
 }
-//todo: try to fetch quote by anime title and character name
