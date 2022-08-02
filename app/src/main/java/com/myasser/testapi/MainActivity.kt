@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //todo: define retrofit builder, fetch quote and send them to other activities
         retrofitBuilder = Retrofit.Builder().baseUrl("https://animechan.vercel.app/api/")
             .addConverterFactory(GsonConverterFactory.create()).build()
         animeInterface = retrofitBuilder.create(AnimeQuoteRetrofit::class.java)
@@ -55,6 +54,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     //search by anime name
                     val animeTitle = animeTextView.text.toString().trim()
                     fetchQuoteByName(animeTitle, true)
+                } else if (animeTextView.text.isNotEmpty() && characterTextView.text.isNotEmpty()) {
+                    Toast.makeText(
+                        v.context,
+                        getString(R.string.query_both_errors),
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    //button is clicked without query
+                    animeTextView.error = getString(R.string.empty_query)
+                    characterTextView.error = getString(R.string.empty_query)
                 }
             }
             R.id.searchRandomButton -> {
@@ -73,7 +82,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
                     override fun onFailure(call: Call<AnimeQuote>?, t: Throwable?) {
-                        Toast.makeText(v.context, "Sorry, something went wrong!", Toast.LENGTH_LONG)
+                        Toast.makeText(
+                            v.context,
+                            getString(R.string.fetch_error),
+                            Toast.LENGTH_LONG
+                        )
                             .show()
                     }
 
@@ -96,7 +109,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 ) {
                     if (response?.isSuccessful!!) {
                         incomingResponse = response.body()!!
-                        startActivity(viewQuoteIntent)
+                        if (incomingResponse.size > 0)
+                            startActivity(viewQuoteIntent)
+                        else
+                            Toast.makeText(
+                                this@MainActivity,
+                                getString(R.string.anime_not_found_error),
+                                Toast.LENGTH_LONG
+                            ).show()
                     }
                 }
 
@@ -104,7 +124,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Log.i("Error", t.toString())
                     Toast.makeText(
                         this@MainActivity,
-                        "Couldn't find quotes for selected anime title",
+                        getString(R.string.anime_not_found_error),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -118,8 +138,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     response: Response<ArrayList<AnimeQuote>>?
                 ) {
                     if (response?.isSuccessful!!) {
-                        incomingResponse = response.body()!!
-                        startActivity(viewQuoteIntent)
+                        if (incomingResponse.size > 0)
+                            startActivity(viewQuoteIntent)
+                        else
+                            Toast.makeText(
+                                this@MainActivity,
+                                getString(R.string.character_not_found_error),
+                                Toast.LENGTH_LONG
+                            ).show()
 
                     }
                 }
@@ -128,7 +154,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Log.i("Error", t.toString())
                     Toast.makeText(
                         this@MainActivity,
-                        "Couldn't find quotes for selected character",
+                        getString(R.string.character_not_found_error),
                         Toast.LENGTH_LONG
                     ).show()
                 }

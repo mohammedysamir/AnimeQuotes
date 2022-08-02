@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">testAPI</string>
+    <string name="get_random_quote">اختار اقتباس عشوائي</string>
+    <string name="search">ابحث</string>
+    <string name="search_by_character_name">البحث بأسم الشخصية</string>
+    <string name="search_by_anime_name">البحث بأسم الانمي</string>
+    <string name="query_both_errors">لا يمكنك البحث عن اقتباس بأسم الشخصية و اسم الانمي في آن واحد</string>
+    <string name="empty_query">ابحث بأسم الشخصية او اسم الانمي فقط</string>
+    <string name="fetch_error">نعتذر! لقد حدثت مشكلة</string>
+    <string name="anime_not_found_error">لا يمكن ايجاد اقتباسات للانمي المختار</string>
+    <string name="character_not_found_error">لا يمكن ايجاد اقتباسات للشخصية المختارة</string>
+</resources>
