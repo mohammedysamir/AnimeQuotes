@@ -1,17 +1,18 @@
-package com.myasser.testapi
+package com.myasser.animeQuote
 
+import animeQuote.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.myasser.testapi.models.AnimeQuote
-import com.myasser.testapi.retrofit.AnimeQuoteRetrofit
-import com.myasser.testapi.screens.QuoteActivity
-import com.myasser.testapi.screens.ViewQuotesActivity
+import com.google.android.material.textfield.TextInputEditText
+import com.myasser.animeQuote.models.AnimeQuote
+import com.myasser.animeQuote.retrofit.AnimeQuoteRetrofit
+import com.myasser.animeQuote.screens.QuoteActivity
+import com.myasser.animeQuote.screens.ViewQuotesActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,16 +46,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.searchButton -> {
-                val animeTextView = findViewById<TextView>(R.id.byAnimeNameTextField)
-                val characterTextView = findViewById<TextView>(R.id.byCharacterNameTextField)
-                if (animeTextView.text.isEmpty()) {
+                val animeTextView = findViewById<TextInputEditText>(R.id.byAnimeNameTextField)
+                val characterTextView = findViewById<TextInputEditText>(R.id.byCharacterNameTextField)
+                if (animeTextView.text?.isEmpty()!!) {
                     val characterName = characterTextView.text.toString().trim()
                     fetchQuoteByName(characterName, false)
-                } else if (animeTextView.text.isNotEmpty()) {
+                } else if (animeTextView.text?.isNotEmpty()!!) {
                     //search by anime name
                     val animeTitle = animeTextView.text.toString().trim()
                     fetchQuoteByName(animeTitle, true)
-                } else if (animeTextView.text.isNotEmpty() && characterTextView.text.isNotEmpty()) {
+                } else if (animeTextView.text?.isNotEmpty()!! && characterTextView.text?.isNotEmpty()!!) {
                     Toast.makeText(
                         v.context,
                         getString(R.string.query_both_errors),

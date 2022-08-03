@@ -1,4 +1,4 @@
-package com.myasser.testapi
+package com.myasser.animeQuote
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.myasser.testapi.models.AnimeQuote
-import com.myasser.testapi.screens.QuoteActivity
+import animeQuote.R
+import com.myasser.animeQuote.models.AnimeQuote
+import com.myasser.animeQuote.screens.QuoteActivity
 
 class AnimeQuoteAdapter(var quotes: ArrayList<AnimeQuote>) :
     RecyclerView.Adapter<AnimeQuoteAdapter.ViewHolder>() {

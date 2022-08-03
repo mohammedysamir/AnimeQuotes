@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context="com.myasser.animeQuote.MainActivity">
 
     <TextView
         android:id="@+id/welcome_text"
@@ -29,6 +29,7 @@
         android:textColorHint="?attr/colorPrimaryVariant"
         app:boxStrokeColor="?attr/colorOnPrimary"
         app:boxStrokeWidth="2dp"
+        app:errorEnabled="true"
         app:expandedHintEnabled="true"
         app:hintAnimationEnabled="true"
         app:hintEnabled="true"
@@ -57,6 +58,7 @@
         android:textColorHint="?attr/colorPrimaryVariant"
         app:boxStrokeColor="?attr/colorOnPrimary"
         app:boxStrokeWidth="2dp"
+        app:errorEnabled="true"
         app:expandedHintEnabled="true"
         app:hintAnimationEnabled="true"
         app:hintEnabled="true"

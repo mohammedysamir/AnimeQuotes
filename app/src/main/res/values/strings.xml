@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">testAPI</string>
+    <string name="app_name">Anime Quote</string>
     <string name="get_random_quote">Get Random Quote</string>
     <string name="search">Search</string>
     <string name="search_by_character_name">Search by Character name</string>

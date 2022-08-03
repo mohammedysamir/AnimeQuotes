@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     android:padding="25dp"
-    tools:context=".screens.QuoteActivity">
+    tools:context="com.myasser.animeQuote.screens.QuoteActivity">
 
     <TextView
         android:id="@+id/animeName"

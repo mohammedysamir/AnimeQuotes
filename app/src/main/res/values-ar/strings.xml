@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">testAPI</string>
+    <string name="app_name">AnimeQuote</string>
     <string name="get_random_quote">اختار اقتباس عشوائي</string>
     <string name="search">ابحث</string>
     <string name="search_by_character_name">البحث بأسم الشخصية</string>
