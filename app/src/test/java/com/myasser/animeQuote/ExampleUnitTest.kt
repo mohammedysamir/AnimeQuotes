@@ -1,4 +1,4 @@
-package com.myasser.testapi
+package com.myasser.animeQuote
 
 import org.junit.Test
 

@@ -1,17 +1,18 @@
-package com.myasser.testapi
+package com.myasser.animeQuote
 
+import animeQuote.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.myasser.testapi.models.AnimeQuote
-import com.myasser.testapi.retrofit.AnimeQuoteRetrofit
-import com.myasser.testapi.screens.QuoteActivity
-import com.myasser.testapi.screens.ViewQuotesActivity
+import com.google.android.material.textfield.TextInputEditText
+import com.myasser.animeQuote.models.AnimeQuote
+import com.myasser.animeQuote.retrofit.AnimeQuoteRetrofit
+import com.myasser.animeQuote.screens.QuoteActivity
+import com.myasser.animeQuote.screens.ViewQuotesActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +34,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //todo: define retrofit builder, fetch quote and send them to other activities
         retrofitBuilder = Retrofit.Builder().baseUrl("https://animechan.vercel.app/api/")
             .addConverterFactory(GsonConverterFactory.create()).build()
         animeInterface = retrofitBuilder.create(AnimeQuoteRetrofit::class.java)
@@ -46,15 +46,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.searchButton -> {
-                val animeTextView = findViewById<TextView>(R.id.byAnimeNameTextField)
-                val characterTextView = findViewById<TextView>(R.id.byCharacterNameTextField)
-                if (animeTextView.text.isEmpty()) {
+                val animeTextView = findViewById<TextInputEditText>(R.id.byAnimeNameTextField)
+                val characterTextView = findViewById<TextInputEditText>(R.id.byCharacterNameTextField)
+                if (animeTextView.text?.isEmpty()!!) {
                     val characterName = characterTextView.text.toString().trim()
                     fetchQuoteByName(characterName, false)
-                } else if (animeTextView.text.isNotEmpty()) {
+                } else if (animeTextView.text?.isNotEmpty()!!) {
                     //search by anime name
                     val animeTitle = animeTextView.text.toString().trim()
                     fetchQuoteByName(animeTitle, true)
+                } else if (animeTextView.text?.isNotEmpty()!! && characterTextView.text?.isNotEmpty()!!) {
+                    Toast.makeText(
+                        v.context,
+                        getString(R.string.query_both_errors),
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    //button is clicked without query
+                    animeTextView.error = getString(R.string.empty_query)
+                    characterTextView.error = getString(R.string.empty_query)
                 }
             }
             R.id.searchRandomButton -> {
@@ -73,7 +83,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
                     override fun onFailure(call: Call<AnimeQuote>?, t: Throwable?) {
-                        Toast.makeText(v.context, "Sorry, something went wrong!", Toast.LENGTH_LONG)
+                        Toast.makeText(
+                            v.context,
+                            getString(R.string.fetch_error),
+                            Toast.LENGTH_LONG
+                        )
                             .show()
                     }
 
@@ -96,7 +110,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 ) {
                     if (response?.isSuccessful!!) {
                         incomingResponse = response.body()!!
-                        startActivity(viewQuoteIntent)
+                        if (incomingResponse.size > 0)
+                            startActivity(viewQuoteIntent)
+                        else
+                            Toast.makeText(
+                                this@MainActivity,
+                                getString(R.string.anime_not_found_error),
+                                Toast.LENGTH_LONG
+                            ).show()
                     }
                 }
 
@@ -104,7 +125,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Log.i("Error", t.toString())
                     Toast.makeText(
                         this@MainActivity,
-                        "Couldn't find quotes for selected anime title",
+                        getString(R.string.anime_not_found_error),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -119,7 +140,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 ) {
                     if (response?.isSuccessful!!) {
                         incomingResponse = response.body()!!
-                        startActivity(viewQuoteIntent)
+                        if (incomingResponse.size > 0)
+                            startActivity(viewQuoteIntent)
+                        else
+                            Toast.makeText(
+                                this@MainActivity,
+                                getString(R.string.character_not_found_error),
+                                Toast.LENGTH_LONG
+                            ).show()
 
                     }
                 }
@@ -128,7 +156,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Log.i("Error", t.toString())
                     Toast.makeText(
                         this@MainActivity,
-                        "Couldn't find quotes for selected character",
+                        getString(R.string.character_not_found_error),
                         Toast.LENGTH_LONG
                     ).show()
                 }
