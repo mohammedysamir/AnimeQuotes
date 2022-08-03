@@ -1,11 +1,10 @@
-package com.myasser.testapi.screens
+package com.myasser.animeQuote.screens
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.myasser.testapi.R
-import com.myasser.testapi.models.AnimeQuote
+import animeQuote.R
+
 
 class QuoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

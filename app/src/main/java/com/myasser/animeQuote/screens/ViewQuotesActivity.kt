@@ -1,14 +1,13 @@
-package com.myasser.testapi.screens
+package com.myasser.animeQuote.screens
 
+import animeQuote.R
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.myasser.testapi.AnimeQuoteAdapter
-import com.myasser.testapi.MainActivity
-import com.myasser.testapi.R
-import com.myasser.testapi.models.AnimeQuote
+import com.myasser.animeQuote.AnimeQuoteAdapter
+import com.myasser.animeQuote.MainActivity
 
 class ViewQuotesActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView

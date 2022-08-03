@@ -1,6 +1,6 @@
-package com.myasser.testapi.retrofit
+package com.myasser.animeQuote.retrofit
 
-import com.myasser.testapi.models.AnimeQuote
+import com.myasser.animeQuote.models.AnimeQuote
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

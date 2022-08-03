@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name">testAPI</string>
+    <string name="app_name">Anime Quote</string>
     <string name="get_random_quote">Get Random Quote</string>
     <string name="search">Search</string>
     <string name="search_by_character_name">Search by Character name</string>
     <string name="search_by_anime_name">Search by Anime name</string>
-    <string name="welcome_text">Welcome to Anime Quotes</string>
+    <string name="welcome_text" translatable="false">Welcome to Anime Quotes</string>
+    <string name="query_both_errors">Can\'t search by anime name and character name at mean time, please select one</string>
+    <string name="empty_query">Please enter either anime name or character name</string>
+    <string name="fetch_error">Sorry, something went wrong!</string>
+    <string name="anime_not_found_error">Could not find quotes for selected anime title</string>
+    <string name="character_not_found_error">Could not find quotes for selected character</string>
 </resources>
